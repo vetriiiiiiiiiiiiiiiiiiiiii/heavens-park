@@ -1,0 +1,52 @@
+// Heavens Park — data model
+// Local development uses SQLite. For production switch provider to
+// "postgresql" and point DATABASE_URL at your Postgres instance.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Reservation {
+  id        String   @id @default(cuid())
+  ref       String   @unique
+  name      String
+  phone     String // normalised: digits with leading +
+  email     String?
+  date      String // YYYY-MM-DD in restaurant time zone
+  time      String // HH:MM 24h
+  guests    Int
+  seating   String // family | private | outdoor
+  occasion  String?
+  notes     String?
+  status    String   @default("confirmed") // confirmed | seated | completed | cancelled | no_show
+  locale    String   @default("en")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([date, seating, status])
+  @@index([phone, date])
+}
+
+model Enquiry {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  email     String?
+  eventType String
+  date      String?
+  guests    Int?
+  message   String?
+  status    String   @default("new") // new | contacted | closed
+  createdAt DateTime @default(now())
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}

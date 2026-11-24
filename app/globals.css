@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@import "./system.css" layer(components);
+@import "./sections.css" layer(components);
+
+/* ════════════════════════════════════════════════════════════
+   HEAVENS PARK — DESIGN SYSTEM
+   ════════════════════════════════════════════════════════════ */
+
+@theme {
+  --color-emerald: #063c30;
+  --color-midnight: #071d19;
+  --color-charcoal: #171916;
+  --color-gold: #c5a15b;
+  --color-brass: #a87939;
+  --color-sand: #d8c5a2;
+  --color-ivory: #f3ebdd;
+  --color-ink: #1d1a14;
+}
+
+@theme inline {
+  --font-display: var(--font-aladin), var(--font-amiri), serif;
+  --font-accent: var(--font-aladin), var(--font-amiri), serif;
+  --font-sans: var(--font-cairo), system-ui, sans-serif;
+  --font-ui: var(--font-marhey), var(--font-tajawal), system-ui, sans-serif;
+  --font-arabic: var(--font-amiri), serif;
+}
+
